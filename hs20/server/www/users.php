@@ -41,7 +41,7 @@ if ($cmd == 'mo' && $id > 0) {
 	$row = $db->query("SELECT $mo FROM users WHERE rowid=$id")->fetch();
 	header("Content-type: text/xml");
 	echo "<?xml version=\"1.0\"?>\n";
-	echo $row[$mo];
+	echo htmlentities($row[$mo], ENT_QUOTES);
 	exit;
 }
 
@@ -120,7 +120,7 @@ if (isset($_GET["dump"])) {
 
 echo "[<a href=\"users.php\">All users</a>] ";
 if ($dump == 0)
-	echo "[<a href=\"users.php?id=$id&dump=1\">Include debug dump</a>] ";
+	echo "[<a href=\"users.php?id=" . htmlentities($id, ENT_QUOTES) . "&dump=1\">Include debug dump</a>] ";
 else
 	echo "[<a href=\"users.php?id=$id\">Without debug dump</a>] ";
 echo "<br>\n";
@@ -131,16 +131,16 @@ echo "<H3>" . $row['identity'] . "@" . $row['realm'] . "</H3>\n";
 
 echo "MO: ";
 if (strlen($row['devinfo']) > 0) {
-	echo "[<a href=\"users.php?cmd=mo&id=$id&mo=devinfo\">DevInfo</a>]\n";
+	echo "[<a href=\"users.php?cmd=mo&id=" . htmlentities($id, ENT_QUOTES) . "&mo=devinfo\">DevInfo</a>]\n";
 }
 if (strlen($row['devdetail']) > 0) {
-	echo "[<a href=\"users.php?cmd=mo&id=$id&mo=devdetail\">DevDetail</a>]\n";
+	echo "[<a href=\"users.php?cmd=mo&id=" . htmlentities($id, ENT_QUOTES) . "&mo=devdetail\">DevDetail</a>]\n";
 }
 if (strlen($row['pps']) > 0) {
-	echo "[<a href=\"users.php?cmd=mo&id=$id&mo=pps\">PPS</a>]\n";
+	echo "[<a href=\"users.php?cmd=mo&id=" . htmlentities($id, ENT_QUOTES) . "&mo=pps\">PPS</a>]\n";
 }
 if (strlen($row['cert_pem']) > 0) {
-	echo "[<a href=\"users.php?cmd=cert&id=$id\">Certificate</a>]\n";
+	echo "[<a href=\"users.php?cmd=cert&id=" . htmlentities($id, ENT_QUOTES) . "\">Certificate</a>]\n";
 }
 echo "<BR>\n";
 
@@ -151,7 +151,7 @@ if ($row['fetch_pps'] == "1") {
 		"do not fetch</a>]<br>\n";
 } else {
 	echo "Do not fetch " .
-		"[<a href=\"users.php?cmd=fetch-pps-on&id=$id\">" .
+		"[<a href=\"users.php?cmd=fetch-pps-on&id=" . htmlentities($id, ENT_QUOTES) . "\">" .
 		"request fetch</a>]<br>\n";
 }
 

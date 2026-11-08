@@ -25,11 +25,11 @@ echo "<h3>Sign up for a subscription - $realm</h3>\n";
 
 $row = $db->query("SELECT value FROM osu_config WHERE realm='$realm' AND field='free_account'")->fetch();
 if ($row && strlen($row['value']) > 0) {
-  echo "<p><a href=\"free.php?session_id=$id\">Sign up for free access</a></p>\n";
+  echo "<p><a href=\"free.php?session_id=" . htmlentities($id, ENT_QUOTES) . "\">Sign up for free access</a></p>\n";
 }
 
 echo "<form action=\"add-mo.php\" method=\"POST\">\n";
-echo "<input type=\"hidden\" name=\"id\" value=\"$id\">\n";
+echo "<input type=\"hidden\" name=\"id\" value=\"" . htmlentities($id, ENT_QUOTES) . "\">\n";
 ?>
 Select a username and password. Leave password empty to get automatically
 generated and machine managed password.<br>
@@ -39,7 +39,7 @@ Password: <input type="password" name="password"><br>
 </form>
 
 <?php
-echo "<p><a href=\"cert-enroll.php?id=$id\">Enroll a client certificate</a></p>\n"
+echo "<p><a href=\"cert-enroll.php?id=" . htmlentities($id, ENT_QUOTES) . "\">Enroll a client certificate</a></p>\n"
 ?>
 
 </body>
