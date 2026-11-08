@@ -12,7 +12,7 @@ to continue using this network.</p>
 <p>Terms and conditions..</p>
 
 <?php
-echo "<a href=\"redirect.php?id=" . $_GET["session_id"] . "\">Accept</a><br>\n";
+echo "<a href=\"redirect.php?id=" . htmlentities($_GET["session_id"], ENT_QUOTES) . "\">Accept</a><br>\n";
 ?>
 
 </body>

@@ -6,9 +6,9 @@
 
 <?php
 
-echo "SessionID: " . $_GET["session_id"] . "<br>\n";
+echo "SessionID: " . htmlentities($_GET["session_id"], ENT_QUOTES) . "<br>\n";
 
-echo "<a href=\"redirect.php?id=" . $_GET["session_id"] . "\">Complete user subscription remediation</a><br>\n";
+echo "<a href=\"redirect.php?id=" . htmlentities($_GET["session_id"], ENT_QUOTES) . "\">Complete user subscription remediation</a><br>\n";
 
 ?>
 
